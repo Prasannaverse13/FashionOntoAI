@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="jumbotron text-center">
+    <h1 class="display-4">Fashion Feature Extraction System</h1>
+    <p class="lead">Intelligent fashion analysis powered by AI</p>
+    <hr class="my-4">
+    <p>Upload images and extract fashion features using our advanced AI system</p>
+    <a class="btn btn-primary btn-lg" href="/extraction" role="button">Try Feature Extraction</a>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-sitemap me-2"></i>Ontology Management</h5>
+                <p class="card-text">View and manage the fashion ontology structure</p>
+                <a href="/ontology" class="btn btn-primary">Go to Ontology</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-magic me-2"></i>Feature Extraction</h5>
+                <p class="card-text">Extract fashion features from images using AI</p>
+                <a href="/extraction" class="btn btn-primary">Start Extraction</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-comments me-2"></i>Feedback System</h5>
+                <p class="card-text">Help improve our system by providing feedback</p>
+                <a href="/feedback" class="btn btn-primary">Give Feedback</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                Recent Activity
+            </div>
+            <div class="card-body">
+                <canvas id="activityChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                System Statistics
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Total Extractions
+                        <span class="badge bg-primary rounded-pill" id="totalExtractions">0</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Active Users
+                        <span class="badge bg-success rounded-pill" id="activeUsers">0</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Feedback Received
+                        <span class="badge bg-info rounded-pill" id="totalFeedback">0</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize activity chart
+    const ctx = document.getElementById('activityChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Extractions',
+                data: [12, 19, 3, 5, 2, 3],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+});
+</script>
+{% endblock %}

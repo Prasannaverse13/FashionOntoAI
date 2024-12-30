@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2>Fashion Ontology</h2>
+            <p class="lead">Explore and manage fashion categories</p>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Add Category</h5>
+                    <select class="form-select mb-3" id="categorySelect">
+                        <option value="">Select a category...</option>
+                        <option value="shoe">Shoes</option>
+                        <option value="shirt">Shirts</option>
+                        <option value="pants">Pants</option>
+                        <option value="dress">Dresses</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="addCategory()">Add to Ontology</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-end mb-2">
+                        <div class="btn-group">
+                            <button class="btn btn-sm btn-outline-secondary" onclick="zoomIn()">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-secondary" onclick="zoomOut()">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="ontologyContainer" class="border rounded p-3" style="height: 600px; overflow: hidden; position: relative; background-color: var(--bs-body-bg);">
+                        <div id="ontologyTree"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="{{ url_for('static', filename='js/ontology.js') }}"></script>
+{% endblock %}

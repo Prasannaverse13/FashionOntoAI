@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2>Feature Extraction Feedback</h2>
+            <p class="lead">Help improve our system by providing feedback on extracted features</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Recent Extractions</span>
+                    <div class="spinner-border spinner-border-sm d-none" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Product ID</th>
+                                    <th>Feature</th>
+                                    <th>Extracted Value</th>
+                                    <th>Confidence</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="extractionsTable">
+                                <tr>
+                                    <td colspan="5" class="text-center">Loading...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">Feedback Statistics</div>
+                <div class="card-body">
+                    <canvas id="feedbackChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Feedback Modal -->
+<div class="modal fade" id="feedbackModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Submit Feedback</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="feedbackForm">
+                    <input type="hidden" id="featureId">
+                    <div class="mb-3">
+                        <label class="form-label">Current Value</label>
+                        <input type="text" class="form-control" id="currentValue" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Corrected Value</label>
+                        <input type="text" class="form-control" id="correctedValue" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Feedback Type</label>
+                        <select class="form-select" id="feedbackType" required>
+                            <option value="value_correction">Value Correction</option>
+                            <option value="missing_feature">Missing Feature</option>
+                            <option value="wrong_category">Wrong Category</option>
+                            <option value="confidence_issue">Confidence Score Issue</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Additional Comments</label>
+                        <textarea class="form-control" id="feedbackComments" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="submitFeedback()">Submit Feedback</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/feedback.js') }}"></script>
+{% endblock %}

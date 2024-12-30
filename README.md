@@ -112,12 +112,11 @@ FashionOntoAI/
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd fashiononto-ai
 ```
 
 2. Install required packages:
 ```bash
-pip install -r requirements.txt
+pip install flask flask-sqlalchemy flask-migrate sqlalchemy psycopg2-binary opencv-python python-dotenv opencv-python-headless numpy openai
 ```
 
 Required packages:
@@ -166,7 +165,3 @@ This project was developed as part of the Stylumia NXT Hackathon 2024. For furth
 3. Commit your changes
 4. Push to the branch
 5. Create a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
